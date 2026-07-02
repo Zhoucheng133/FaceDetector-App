@@ -12,6 +12,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   get: ^4.7.3
+  path: ^1.9.1
   shared_preferences: ^2.5.5
   window_manager: ^0.5.1
 
