@@ -48,15 +48,14 @@ class _PreviewState extends State<Preview> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onSecondaryTapDown: (details) {
-                              final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
-                              final Offset position = overlay.localToGlobal(details.globalPosition);
+                              final tapPosition = details.globalPosition;
                               showMenu(
                                 context: context,
                                 position: RelativeRect.fromLTRB(
-                                  position.dx,
-                                  position.dy,
-                                  position.dx + 50,
-                                  position.dy + 50,
+                                  tapPosition.dx,
+                                  tapPosition.dy-30,
+                                  tapPosition.dx,
+                                  tapPosition.dy-30,
                                 ),
                                 items: [
                                   PopupMenuItem(
