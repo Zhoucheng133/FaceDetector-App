@@ -21,6 +21,8 @@ class Controller extends GetxController {
 
   late SharedPreferences prefs;
 
+  RxInt finished=RxInt(0);
+
   RxList<String> files=RxList([]);
 
   Future<void> init() async {

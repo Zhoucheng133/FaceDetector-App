@@ -38,6 +38,9 @@ class _AddViewState extends State<AddView> {
         showOkDialog(context, "addFailed".tr, "noImageFiles".tr);
       }
     }
+    if(controller.files.isNotEmpty){
+      Get.toNamed("/preview", id: 1);
+    }
   }
 
   Future<void> pickDir(BuildContext context) async {
@@ -56,6 +59,10 @@ class _AddViewState extends State<AddView> {
       if(controller.files.isEmpty && context.mounted){
         showOkDialog(context, "addFailed".tr, "noImageFiles".tr);
       }
+    }
+
+    if(controller.files.isNotEmpty){
+      Get.toNamed("/preview", id: 1);
     }
   }
 
@@ -93,6 +100,8 @@ class _AddViewState extends State<AddView> {
 
     if(controller.files.isEmpty){
       showOkDialog(context, "addFailed".tr, "noImageFiles".tr);
+    }else{
+      Get.toNamed("/preview", id: 1);
     }
   }
 

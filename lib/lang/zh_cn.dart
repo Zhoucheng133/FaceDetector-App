@@ -4,5 +4,8 @@ const Map<String, String> zhCN={
   "selectDir": "选择目录",
   "addFailed": "添加失败",
   "noImageFiles": "没有找到图片",
-  "ok": "好的"
+  "ok": "好的",
+  "delete": "删除",
+  "cancel": "取消",
+  "next": "下一步"
 };
