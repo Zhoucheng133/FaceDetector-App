@@ -34,9 +34,9 @@ class _AddViewState extends State<AddView> {
           controller.files.add(file.path!);
         }
       }
-    }
-    if(controller.files.isEmpty && context.mounted){
-      showOkDialog(context, "addFailed".tr, "noImageFiles".tr);
+      if(controller.files.isEmpty && context.mounted){
+        showOkDialog(context, "addFailed".tr, "noImageFiles".tr);
+      }
     }
   }
 
