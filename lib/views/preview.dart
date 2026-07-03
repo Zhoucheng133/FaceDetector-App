@@ -17,8 +17,8 @@ class _PreviewState extends State<Preview> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return Material(
+      child: Padding(
         padding: const EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 15),
         child: Column(
           spacing: 10,
@@ -114,7 +114,7 @@ class _PreviewState extends State<Preview> {
                   ),
                   ElevatedButton(
                     onPressed: (){
-      
+                      Get.toNamed("/config", id: 1);
                     }, 
                     child: Row(
                       spacing: 5,

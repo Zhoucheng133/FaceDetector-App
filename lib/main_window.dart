@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:face_detector_app/views/add_view.dart';
+import 'package:face_detector_app/views/config_view.dart';
 import 'package:face_detector_app/views/preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,10 +80,13 @@ class _MainWindowState extends State<MainWindow> with WindowListener {
             key: Get.nestedKey(1),
             initialRoute: '/add',
             onGenerateRoute: (settings) {
-              if (settings.name == '/add') {
-                return GetPageRoute(page: () => const AddView());
-              } else if (settings.name == '/preview') {
-                return GetPageRoute(page: () => const Preview());
+              switch (settings.name) {
+                case "/add":
+                  return GetPageRoute(page: () => const AddView());
+                case "/preview":
+                  return GetPageRoute(page: () => const Preview());
+                case "/config":
+                  return GetPageRoute(page: () => const ConfigView());
               }
               return null;
             },
