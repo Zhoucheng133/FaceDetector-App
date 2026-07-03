@@ -13,6 +13,7 @@ Future<void> main() async {
   await controller.init();
   WindowOptions windowOptions = WindowOptions(
     size: Size(800, 600),
+    minimumSize: Size(800, 600),
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
@@ -65,7 +66,7 @@ class _MainAppState extends State<MainApp> {
         brightness: Theme.of(context).brightness,
         fontFamily: 'PuHui', 
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.orange,
+          seedColor: Colors.cyan,
           brightness: Theme.of(context).brightness,
         ),
         textTheme: Theme.of(context).brightness==Brightness.dark ? ThemeData.dark().textTheme.apply(

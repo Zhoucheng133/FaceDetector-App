@@ -1,6 +1,10 @@
 import 'dart:io';
 
+import 'package:face_detector_app/getx/controller.dart';
+import 'package:face_detector_app/views/add_view.dart';
+import 'package:face_detector_app/views/config_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
 class MainWindow extends StatefulWidget {
@@ -12,6 +16,8 @@ class MainWindow extends StatefulWidget {
 
 // 注意添加with WindowListener
 class _MainWindowState extends State<MainWindow> with WindowListener {
+
+  final Controller controller = Get.find();
 
   @override
   void initState() {
@@ -72,6 +78,11 @@ class _MainWindowState extends State<MainWindow> with WindowListener {
             ],
           ),
         ),
+        Expanded(
+          child: Obx(()=>
+            controller.files.isEmpty ? AddView() : ConfigView(),
+          )
+        )
       ],
     );
   }

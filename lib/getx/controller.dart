@@ -21,6 +21,8 @@ class Controller extends GetxController {
 
   late SharedPreferences prefs;
 
+  RxList<String> files=RxList([]);
+
   Future<void> init() async {
     prefs=await SharedPreferences.getInstance();
 
