@@ -12,8 +12,8 @@ Future<void> main() async {
   final Controller controller = Get.put(Controller());
   await controller.init();
   WindowOptions windowOptions = WindowOptions(
-    size: Size(800, 600),
-    minimumSize: Size(800, 600),
+    size: Size(500, 600),
+    minimumSize: Size(500, 600),
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
