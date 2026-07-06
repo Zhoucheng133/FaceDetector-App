@@ -1,4 +1,5 @@
 import 'package:face_detector_app/getx/controller.dart';
+import 'package:face_detector_app/getx/middleware.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class ConfigView extends StatefulWidget {
 class _ConfigViewState extends State<ConfigView> {
 
   final Controller controller = Get.find();
+  final Middleware middleware = Get.find();
 
   String? imageType="portrait";
   String? action;
@@ -26,6 +28,28 @@ class _ConfigViewState extends State<ConfigView> {
         pathInput.text = selectedDirectory;
       });
     }
+  }
+
+  void nextHandler(BuildContext context){
+    if(!disabled()){
+      middleware.processArg.value = ProcessArg(
+        ImageTypes.values.asNameMap()[imageType]!,
+        ImageAction.values.asNameMap()[action]!,
+        confidence,
+        pathInput.text
+      );
+      Get.toNamed("/process", id: 1);
+    }
+  }
+
+  bool disabled(){
+    if(imageType == null || action == null){
+      return true;
+    }
+    if(action != "delete" && pathInput.text.isEmpty){
+      return true;
+    }
+    return false;
   }
 
   @override
@@ -235,9 +259,7 @@ class _ConfigViewState extends State<ConfigView> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: (){
-                      // TODO
-                    }, 
+                    onPressed: disabled() ? null : ()=>nextHandler(context), 
                     child: Row(
                       spacing: 5,
                       mainAxisSize: .min,

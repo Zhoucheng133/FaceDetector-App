@@ -1,0 +1,24 @@
+import 'package:get/get.dart';
+
+enum ImageAction{
+  delete,
+  copyTo,
+  moveTo,
+}
+
+enum ImageTypes{
+  portrait,
+  other,
+}
+
+class ProcessArg{
+  ImageTypes imageType;
+  ImageAction action;
+  String path;
+  double confidence;
+  ProcessArg(this.imageType, this.action, this.confidence, this.path);
+}
+
+class Middleware extends GetxController {
+  Rx<ProcessArg?> processArg=Rx(null as ProcessArg?);
+}

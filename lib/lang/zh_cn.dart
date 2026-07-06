@@ -17,5 +17,6 @@ const Map<String, String> zhCN={
   "moveTo": "移动到...",
   "targetDir": "目标目录",
   "confidence": "置信度",
-  "confidenceTip": "置信度越高，识别越严格"
+  "confidenceTip": "置信度越高，识别越严格",
+  "stop": "停止"
 };

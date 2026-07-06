@@ -1,4 +1,5 @@
 import 'package:face_detector_app/getx/controller.dart';
+import 'package:face_detector_app/getx/middleware.dart';
 import 'package:face_detector_app/lang/zh_cn.dart';
 import 'package:face_detector_app/main_window.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
   final Controller controller = Get.put(Controller());
+  Get.put(Middleware());
   await controller.init();
   WindowOptions windowOptions = WindowOptions(
     size: Size(500, 600),
