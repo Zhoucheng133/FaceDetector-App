@@ -7,5 +7,15 @@ const Map<String, String> zhCN={
   "ok": "好的",
   "delete": "删除",
   "cancel": "取消",
-  "next": "下一步"
+  "next": "下一步",
+  "select": "选择",
+  "portraitPhotos": "人像照片",
+  "otherPhotos": "其他照片",
+  "actions": "操作",
+  "draw": "框选人像",
+  "copyTo": "复制到...",
+  "moveTo": "移动到...",
+  "targetDir": "目标目录",
+  "confidence": "置信度",
+  "confidenceTip": "置信度越高，识别越严格"
 };
