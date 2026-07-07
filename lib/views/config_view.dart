@@ -244,8 +244,8 @@ class _ConfigViewState extends State<ConfigView> {
                     children: [
                       TextButton(
                         onPressed: (){
-                          controller.files.clear();
                           Get.until((route) => route.isFirst, id: 1);
+                          controller.files.clear();
                         }, 
                         child: Row(
                           mainAxisSize: .min,

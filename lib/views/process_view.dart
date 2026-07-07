@@ -26,7 +26,7 @@ class _ProcessViewState extends State<ProcessView> {
     await detector.run();
     if(context.mounted){
       if(middleware.processArg.value?.action==ImageAction.draw){
-        showOkDialog(context, "processDone", "");
+        showOkDialog(context, "processDone".tr, "");
         return;
       }
     }
@@ -108,9 +108,9 @@ class _ProcessViewState extends State<ProcessView> {
                         children: [
                           TextButton(
                             onPressed: controller.running.value ? null : (){
+                              Get.until((route) => route.isFirst, id: 1);
                               controller.files.clear();
                               controller.faces.value=[];
-                              Get.until((route) => route.isFirst, id: 1);
                             }, 
                             child: Row(
                               mainAxisSize: .min,

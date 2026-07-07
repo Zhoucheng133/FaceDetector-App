@@ -18,6 +18,9 @@ class Detector {
     env['PYTHONUTF8']='1';
 
     for (var el in controller.files) {
+      if(!controller.running.value){
+        return;
+      }
       try {
         final args = [
           middleware.processArg.value!.action==ImageAction.draw? "draw" : "count",
