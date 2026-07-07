@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:face_detector_app/getx/controller.dart';
 import 'package:face_detector_app/getx/middleware.dart';
 import 'package:face_detector_app/utils/detector.dart';
@@ -18,7 +20,6 @@ class _ProcessViewState extends State<ProcessView> {
 
   final Controller controller = Get.find();
   final Middleware middleware = Get.find();
-  late Map<String, dynamic> args;
 
   final Detector detector = Detector();
 
@@ -30,13 +31,15 @@ class _ProcessViewState extends State<ProcessView> {
         return;
       }
 
-      final count=controller.faces.where((element){
-        if(middleware.processArg.value?.imageType==ImageTypes.portrait){
-          return controller.faces[element]>0;
+      final isPortrait=middleware.processArg.value?.imageType==ImageTypes.portrait;
+      final filteredIndices=<int>[];
+      for(int i=0;i<controller.files.length&&i<controller.faces.length;i++){
+        if(isPortrait){
+          if(controller.faces[i]>0) filteredIndices.add(i);
         }else{
-          return controller.faces[element]>0;
+          if(controller.faces[i]==0) filteredIndices.add(i);
         }
-      }).length;
+      }
       
       if(middleware.processArg.value?.action==ImageAction.copyTo){
         final ok=await showConfirmDialog(
@@ -44,11 +47,12 @@ class _ProcessViewState extends State<ProcessView> {
           "copyFiles".tr, 
           SizedBox(
             height: 300,
+            width: 300,
             child: ListView.builder(
-              itemCount: count,
+              itemCount: filteredIndices.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(p.basename(controller.files[index])),
+                  title: Text(p.basename(controller.files[filteredIndices[index]])),
                 );
               }
             ),
@@ -56,8 +60,12 @@ class _ProcessViewState extends State<ProcessView> {
           okText: "copy"
         );
         if(ok==true && context.mounted){
-          // TODO 复制controller.files[index]中controller.faces[index]>0的图片到middleware.processArg.value!.path
-          showOkDialog(context, "processDone".tr, "");
+          for(final i in filteredIndices){
+            await File(controller.files[i]).copy(
+              p.join(middleware.processArg.value!.path, p.basename(controller.files[i]))
+            );
+          }
+          if(context.mounted) showOkDialog(context, "processDone".tr, "");
         }
       }else if(middleware.processArg.value?.action==ImageAction.moveTo){
         final ok=await showConfirmDialog(
@@ -65,11 +73,12 @@ class _ProcessViewState extends State<ProcessView> {
           "moveFiles".tr, 
           SizedBox(
             height: 300,
+            width: 300,
             child: ListView.builder(
-              itemCount: count,
+              itemCount: filteredIndices.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(p.basename(controller.files[index])),
+                  title: Text(p.basename(controller.files[filteredIndices[index]])),
                 );
               }
             ),
@@ -77,8 +86,12 @@ class _ProcessViewState extends State<ProcessView> {
           okText: "move"
         );
         if(ok==true && context.mounted){
-          // TODO 移动controller.files[index]中controller.faces[index]>0的图片到middleware.processArg.value!.path
-          showOkDialog(context, "processDone".tr, "");
+          for(final i in filteredIndices){
+            await File(controller.files[i]).rename(
+              p.join(middleware.processArg.value!.path, p.basename(controller.files[i]))
+            );
+          }
+          if(context.mounted) showOkDialog(context, "processDone".tr, "");
         }
       }else if(middleware.processArg.value?.action==ImageAction.delete){
         final ok=await showConfirmDialog(
@@ -86,11 +99,12 @@ class _ProcessViewState extends State<ProcessView> {
           "deleteFiles".tr, 
           SizedBox(
             height: 300,
+            width: 300,
             child: ListView.builder(
-              itemCount: count,
+              itemCount: filteredIndices.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(p.basename(controller.files[index])),
+                  title: Text(p.basename(controller.files[filteredIndices[index]])),
                 );
               }
             ),
@@ -98,8 +112,10 @@ class _ProcessViewState extends State<ProcessView> {
           okText: "delete"
         );
         if(ok==true && context.mounted){
-          // TODO 删除controller.files[index]中controller.faces[index]>0的图片
-          showOkDialog(context, "processDone".tr, "");
+          for(final i in filteredIndices){
+            await File(controller.files[i]).delete();
+          }
+          if(context.mounted) showOkDialog(context, "processDone".tr, "");
         }
       }
     }
