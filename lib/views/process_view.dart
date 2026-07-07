@@ -1,6 +1,7 @@
 import 'package:face_detector_app/getx/controller.dart';
 import 'package:face_detector_app/getx/middleware.dart';
 import 'package:face_detector_app/utils/detector.dart';
+import 'package:face_detector_app/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart' as p;
@@ -21,11 +22,59 @@ class _ProcessViewState extends State<ProcessView> {
 
   final Detector detector = Detector();
 
+  Future<void> process(BuildContext context) async {
+    await detector.run();
+    if(context.mounted){
+      if(middleware.processArg.value?.action==ImageAction.draw){
+        showOkDialog(context, "processDone", "");
+        return;
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     controller.running.value=true;
-    detector.run();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      process(context);
+    });
+  }
+
+  Widget trailingBuilder(BuildContext context, int index) {
+    if(controller.running.value){
+      if(controller.faces.length==index){
+        return SizedBox(
+          height: 20,
+          width: 20,
+          child: const CircularProgressIndicator(strokeWidth: 2)
+        );
+      }else if(controller.faces.length>index){
+        return Row(
+          mainAxisSize: .min,
+          spacing: 5,
+          children: [
+            Icon(Icons.face_rounded),
+            Text(controller.faces[index].toString()),
+          ],
+        );
+      }else{
+        return Icon(Icons.hourglass_empty_rounded);
+      }
+    }else{
+      if(controller.faces.length>index){
+        return Row(
+          mainAxisSize: .min,
+          spacing: 5,
+          children: [
+            Icon(Icons.face_rounded),
+            Text(controller.faces[index].toString()),
+          ],
+        );
+      }else{
+        return Icon(Icons.close_rounded);
+      }
+    }
   }
 
   @override
@@ -39,8 +88,11 @@ class _ProcessViewState extends State<ProcessView> {
               child: Obx(
                 () => ListView.builder(
                   itemCount: controller.files.length,
-                  itemBuilder: (BuildContext context, int index)=>ListTile(
-                    title: Text(p.basename(controller.files[index])),
+                  itemBuilder: (BuildContext context, int index)=>Obx(
+                    () => ListTile(
+                      title: Text(p.basename(controller.files[index])),
+                      trailing: trailingBuilder(context, index)
+                    ),
                   )
                 ),
               )
@@ -57,6 +109,7 @@ class _ProcessViewState extends State<ProcessView> {
                           TextButton(
                             onPressed: controller.running.value ? null : (){
                               controller.files.clear();
+                              controller.faces.value=[];
                               Get.until((route) => route.isFirst, id: 1);
                             }, 
                             child: Row(

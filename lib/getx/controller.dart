@@ -21,7 +21,7 @@ class Controller extends GetxController {
 
   late SharedPreferences prefs;
 
-  RxInt finished=RxInt(0);
+  RxList<int> faces=RxList([]);
   RxBool running=RxBool(false);
   RxList<String> files=RxList([]);
 

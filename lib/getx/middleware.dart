@@ -4,6 +4,7 @@ enum ImageAction{
   delete,
   copyTo,
   moveTo,
+  draw
 }
 
 enum ImageTypes{
