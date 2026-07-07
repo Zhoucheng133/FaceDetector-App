@@ -18,9 +18,6 @@ class Detector {
     env['PYTHONUTF8']='1';
 
     for (var el in controller.files) {
-      if(!controller.running.value){
-        return;
-      }
       try {
         final args = [
           middleware.processArg.value!.action==ImageAction.draw? "draw" : "count",
@@ -29,9 +26,14 @@ class Detector {
           "--confidence", middleware.processArg.value!.confidence.toString(),
           "--output", p.join(middleware.processArg.value!.path, "${p.basenameWithoutExtension(el)}_detected.jpg"),
         ];
+        // print(el);
         final rlt=await Process.run(getDetectorPath(), args, environment: env);
+        // print(rlt.stdout);
         final data=json.decode(rlt.stdout);
         controller.faces.add(data['data']);
+        if(!controller.running.value){
+          return;
+        }
       } catch (_) {
         controller.faces.add(0);
       }
