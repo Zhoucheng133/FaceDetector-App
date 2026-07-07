@@ -29,6 +29,79 @@ class _ProcessViewState extends State<ProcessView> {
         showOkDialog(context, "processDone".tr, "");
         return;
       }
+
+      final count=controller.faces.where((element){
+        if(middleware.processArg.value?.imageType==ImageTypes.portrait){
+          return controller.faces[element]>0;
+        }else{
+          return controller.faces[element]>0;
+        }
+      }).length;
+      
+      if(middleware.processArg.value?.action==ImageAction.copyTo){
+        final ok=await showConfirmDialog(
+          context, 
+          "copyFiles".tr, 
+          SizedBox(
+            height: 300,
+            child: ListView.builder(
+              itemCount: count,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(p.basename(controller.files[index])),
+                );
+              }
+            ),
+          ),
+          okText: "copy"
+        );
+        if(ok==true && context.mounted){
+          // TODO 复制controller.files[index]中controller.faces[index]>0的图片到middleware.processArg.value!.path
+          showOkDialog(context, "processDone".tr, "");
+        }
+      }else if(middleware.processArg.value?.action==ImageAction.moveTo){
+        final ok=await showConfirmDialog(
+          context, 
+          "moveFiles".tr, 
+          SizedBox(
+            height: 300,
+            child: ListView.builder(
+              itemCount: count,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(p.basename(controller.files[index])),
+                );
+              }
+            ),
+          ),
+          okText: "move"
+        );
+        if(ok==true && context.mounted){
+          // TODO 移动controller.files[index]中controller.faces[index]>0的图片到middleware.processArg.value!.path
+          showOkDialog(context, "processDone".tr, "");
+        }
+      }else if(middleware.processArg.value?.action==ImageAction.delete){
+        final ok=await showConfirmDialog(
+          context, 
+          "deleteFiles".tr, 
+          SizedBox(
+            height: 300,
+            child: ListView.builder(
+              itemCount: count,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(p.basename(controller.files[index])),
+                );
+              }
+            ),
+          ),
+          okText: "delete"
+        );
+        if(ok==true && context.mounted){
+          // TODO 删除controller.files[index]中controller.faces[index]>0的图片
+          showOkDialog(context, "processDone".tr, "");
+        }
+      }
     }
   }
 

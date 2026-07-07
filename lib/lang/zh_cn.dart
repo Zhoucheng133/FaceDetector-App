@@ -19,5 +19,10 @@ const Map<String, String> zhCN={
   "confidence": "置信度",
   "confidenceTip": "置信度越高，识别越严格",
   "stop": "停止",
-  "processDone": "操作完成"
+  "processDone": "操作完成",
+  "copyFiles": "复制文件",
+  "moveFiles": "移动文件",
+  "deleteFiles": "删除文件",
+  "copy": "复制",
+  "move": "移动",
 };
