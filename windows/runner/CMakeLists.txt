@@ -38,3 +38,23 @@ target_include_directories(${BINARY_NAME} PRIVATE "${CMAKE_SOURCE_DIR}")
 
 # Run the Flutter tool portions of the build. This must not be removed.
 add_dependencies(${BINARY_NAME} flutter_assemble)
+
+set(EXE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../detector.exe")
+
+add_custom_command(
+    TARGET ${BINARY_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${EXE_FILE}"
+        "$<TARGET_FILE_DIR:${BINARY_NAME}>/detector.exe"
+    COMMENT "Copy exe file"
+)
+
+set(MODEL_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../model.tflite")
+
+add_custom_command(
+    TARGET ${BINARY_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${MODEL_FILE}"
+        "$<TARGET_FILE_DIR:${BINARY_NAME}>/model.tflite"
+    COMMENT "Copy exe file"
+)
