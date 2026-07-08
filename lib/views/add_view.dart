@@ -71,7 +71,8 @@ class _AddViewState extends State<AddView> {
     List<DropItem> dirs = [];
 
     for (var item in details.files) {
-      if (item is DropItemDirectory) {
+      final path=item.path;
+      if (item is DropItemDirectory || Directory(path).existsSync()) {
         dirs.add(item);
       } else {
         files.add(item);
