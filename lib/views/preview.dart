@@ -48,6 +48,9 @@ class _PreviewState extends State<Preview> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onSecondaryTapDown: (details) {
+                              if(files.length<=1){
+                                return;
+                              }
                               final tapPosition = details.globalPosition;
                               showMenu(
                                 useRootNavigator: true,
