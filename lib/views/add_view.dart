@@ -109,33 +109,88 @@ class _AddViewState extends State<AddView> {
   Widget build(BuildContext context) {
     return DropTarget(
       onDragDone: (details)=>dropHandler(details, context),
-      child: Center(
-        child: Column(
-          mainAxisSize: .min,
-          spacing: 10,
-          children: [
-            Row(
-              spacing: 5,
+      child: Stack(
+        children: [
+          Center(
+            child: Column(
               mainAxisSize: .min,
+              spacing: 10,
               children: [
-                TextButton(
-                  onPressed: ()=>pickImage(context), 
-                  child: Text("selectImage".tr)
+                Row(
+                  spacing: 5,
+                  mainAxisSize: .min,
+                  children: [
+                    TextButton(
+                      onPressed: ()=>pickImage(context), 
+                      child: Text("selectImage".tr)
+                    ),
+                    ElevatedButton(
+                      onPressed: ()=>pickDir(context), 
+                      child: Text("selectDir".tr)
+                    )
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: ()=>pickDir(context), 
-                  child: Text("selectDir".tr)
+                Text(
+                  "dropTip".tr,
+                  style: TextStyle(
+                    color: Colors.grey[400]
+                  ),
                 )
               ],
             ),
-            Text(
-              "dropTip".tr,
-              style: TextStyle(
-                color: Colors.grey[400]
-              ),
+          ),
+          Positioned(
+            right: 30,
+            bottom: 30,
+            child: Row(
+              mainAxisSize: .min,
+              mainAxisAlignment: .center,
+              crossAxisAlignment: .center,
+              children: [
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)
+                      )
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  ),
+                  onPressed: ()=>selectLanguage(context), 
+                  child: Row(
+                    mainAxisSize: .min,
+                    children: [
+                      Icon(Icons.translate_rounded),
+                      SizedBox(width: 5,),
+                      Text("language".tr),
+                    ],
+                  )
+                ),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10)
+                      )
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  ),
+                  onPressed: ()=>showAbout(context), 
+                  child: Row(
+                    mainAxisSize: .min,
+                    children: [
+                      Icon(Icons.info_rounded),
+                      SizedBox(width: 5,),
+                      Text("about".tr),
+                    ],
+                  )
+                ),
+              ],
             )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
