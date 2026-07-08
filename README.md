@@ -19,4 +19,3 @@ Also available in English. Click [HERE](/documents/en.md) to view the English ve
 
 <img src="screenshots/cn/1.png" width="400px">
 <img src="screenshots/cn/2.png" width="400px">
-<img src="screenshots/cn/3.png" width="400px">
