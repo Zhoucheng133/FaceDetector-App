@@ -23,8 +23,7 @@ class _ProcessViewState extends State<ProcessView> {
 
   final Detector detector = Detector();
 
-  Future<void> process(BuildContext context) async {
-    await detector.run();
+  Future<void> onProcessDone(BuildContext context) async {
     if(context.mounted){
       if(middleware.processArg.value?.action==ImageAction.draw){
         showOkDialog(context, "processDone".tr, "");
@@ -119,6 +118,10 @@ class _ProcessViewState extends State<ProcessView> {
         }
       }
     }
+  }
+
+  Future<void> process(BuildContext context) async {
+    await detector.run(()=>onProcessDone(context));
   }
 
   @override

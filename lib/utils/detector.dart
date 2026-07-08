@@ -1,45 +1,43 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:face_detector_app/getx/controller.dart';
 import 'package:face_detector_app/getx/middleware.dart';
 import 'package:face_detector_app/utils/handler.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart' as p;
 
 class Detector {
 
   final Controller controller = Get.find();
   final Middleware middleware = Get.find();
 
-  Future<void> run() async {
+  Future<void> run(VoidCallback func) async {
     final env = Map<String, String>.from(Platform.environment);
     env['PYTHONUNBUFFERED'] = '1';
     env['PYTHONUTF8']='1';
-
-    for (var el in controller.files) {
-      try {
-        final args = [
-          middleware.processArg.value!.action==ImageAction.draw? "draw" : "count",
-          el,
-          "--model", getModelPath(),
-          "--confidence", middleware.processArg.value!.confidence.toString(),
-          "--output", p.join(middleware.processArg.value!.path, "${p.basenameWithoutExtension(el)}_detected.jpg"),
-          "--thickness", middleware.processArg.value!.thickness.toString(),
-        ];
-        // print(el);
-        final rlt=await Process.run(getDetectorPath(), args, environment: env);
-        // print(rlt.stdout);
-        final data=json.decode(rlt.stdout);
-        controller.faces.add(data['data']);
-        if(!controller.running.value){
-          return;
-        }
-      } catch (_) {
-        controller.faces.add(0);
-      }
-    }
-    controller.running.value=false;
+    try {
+      final args = [
+        middleware.processArg.value!.action==ImageAction.draw? "draw" : "count",
+        ...controller.files,
+        "--model", getModelPath(),
+        "--confidence", middleware.processArg.value!.confidence.toString(),
+        "--output", middleware.processArg.value!.path,
+        "--thickness", middleware.processArg.value!.thickness.toString(),
+      ];
+      // print(el);
+      final Process process=await Process.start(getDetectorPath(), args, environment: env);
+      process.stdout
+      .listen((data) {
+        final text = utf8.decode(data, allowMalformed: true);
+        final count = jsonDecode(text)["data"];
+        controller.faces.add(count);
+      });
+      process.exitCode.then((val){
+        controller.running.value=false;
+        func();
+      });
+    } catch (_) {}
   }
 
   void stop(){
