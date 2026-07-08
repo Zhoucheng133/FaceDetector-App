@@ -1,7 +1,7 @@
 name: face_detector_app
-description: "A new Flutter project."
+description: "FaceDetector App"
 publish_to: 'none'
-version: 0.1.0+1
+version: 0.1.0
 
 environment:
   sdk: ^3.11.4
@@ -41,7 +41,7 @@ msix_config:
   publisher_display_name: ZhouCheng
   identity_name: ZhouCheng.FaceDetector
   msix_version: 0.1.0.0
-  logo_path: icon/icon.png
+  logo_path: assets/icon.png
   trim_logo: false
   capabilities: internetClient, internetClientServer
   languages: zh-cn, zh-tw, en-us
