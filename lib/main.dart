@@ -55,6 +55,9 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    
+    final brightness = MediaQuery.of(context).platformBrightness;
+
     return GetMaterialApp(
       translations: MainTranslations(), 
       debugShowCheckedModeBanner: false,
@@ -67,13 +70,13 @@ class _MainAppState extends State<MainApp> {
         GlobalCupertinoLocalizations.delegate
       ],
       theme: ThemeData(
-        brightness: Theme.of(context).brightness,
+        brightness: brightness,
         fontFamily: 'PuHui', 
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.cyan,
-          brightness: Theme.of(context).brightness,
+          brightness: brightness,
         ),
-        textTheme: Theme.of(context).brightness==Brightness.dark ? ThemeData.dark().textTheme.apply(
+        textTheme: brightness==Brightness.dark ? ThemeData.dark().textTheme.apply(
           fontFamily: 'PuHui',
           bodyColor: Colors.white,
           displayColor: Colors.white,
