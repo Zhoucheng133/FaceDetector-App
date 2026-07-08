@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:face_detector_app/utils/sys.dart';
 import 'package:face_detector_app/views/add_view.dart';
 import 'package:face_detector_app/views/config_view.dart';
 import 'package:face_detector_app/views/preview.dart';
@@ -94,7 +95,8 @@ class _MainWindowState extends State<MainWindow> with WindowListener {
               return null;
             },
           ),
-        )
+        ),
+        systemMenu(), 
       ],
     );
   }

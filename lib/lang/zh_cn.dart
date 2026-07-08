@@ -29,5 +29,10 @@ const Map<String, String> zhCN={
   "thickness": "边框粗细",
   "preview": "预览",
   "config": "配置",
-  "backHome": "回到主页"
+  "backHome": "回到主页",
+  "edit": "编辑",
+  "paste": "粘贴",
+  "selectAll": "全选",
+  "window": "窗口",
+  "about": "关于"
 };
