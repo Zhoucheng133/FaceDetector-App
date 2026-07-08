@@ -12,6 +12,8 @@ class Detector {
   final Controller controller = Get.find();
   final Middleware middleware = Get.find();
 
+  late Process process;
+
   Future<void> run(VoidCallback func) async {
     final env = Map<String, String>.from(Platform.environment);
     env['PYTHONUNBUFFERED'] = '1';
@@ -26,7 +28,7 @@ class Detector {
         "--thickness", middleware.processArg.value!.thickness.toString(),
       ];
       // print(el);
-      final Process process=await Process.start(getDetectorPath(), args, environment: env);
+      process=await Process.start(getDetectorPath(), args, environment: env);
       process.stdout
       .listen((data) {
         final text = utf8.decode(data, allowMalformed: true);
@@ -41,6 +43,9 @@ class Detector {
   }
 
   void stop(){
+    try {
+      process.kill();
+    } catch (_) {}
     controller.running.value=false;
   }
 }
