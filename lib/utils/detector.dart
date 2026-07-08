@@ -25,7 +25,7 @@ class Detector {
           "--model", getModelPath(),
           "--confidence", middleware.processArg.value!.confidence.toString(),
           "--output", p.join(middleware.processArg.value!.path, "${p.basenameWithoutExtension(el)}_detected.jpg"),
-          // "--thickness", "5",
+          "--thickness", middleware.processArg.value!.thickness.toString(),
         ];
         // print(el);
         final rlt=await Process.run(getDetectorPath(), args, environment: env);
