@@ -20,6 +20,7 @@ class _ConfigViewState extends State<ConfigView> {
   String? action;
   final pathInput = TextEditingController();
   double confidence = 0.5;
+  int thickness = 5;
 
   Future<void> pickTargetDirectory() async {
     String? selectedDirectory = await FilePicker.getDirectoryPath();
@@ -36,7 +37,8 @@ class _ConfigViewState extends State<ConfigView> {
         ImageTypes.values.asNameMap()[imageType]!,
         ImageAction.values.asNameMap()[action]!,
         confidence,
-        pathInput.text
+        pathInput.text,
+        thickness
       );
       Get.toNamed("/process", id: 1);
     }
@@ -50,6 +52,16 @@ class _ConfigViewState extends State<ConfigView> {
       return true;
     }
     return false;
+  }
+
+  String outputLabel(){
+    if(action == "delete"){
+      return "";
+    }else if(action=="draw"){
+      return "output".tr;
+    }else{
+      return action?.tr ?? "";
+    }
   }
 
   @override
@@ -133,8 +145,8 @@ class _ConfigViewState extends State<ConfigView> {
                                   ),
                                   items: [
                                     DropdownMenuItem(value: 'delete', child: Text('delete'.tr)),
-                                    DropdownMenuItem(value: 'copyTo', child: Text('copyTo'.tr)),
-                                    DropdownMenuItem(value: 'moveTo', child: Text('moveTo'.tr)),
+                                    DropdownMenuItem(value: 'copyTo', child: Text('copy'.tr)),
+                                    DropdownMenuItem(value: 'moveTo', child: Text('move'.tr)),
                                     if(imageType == 'portrait') DropdownMenuItem(value: 'draw', child: Text('draw'.tr)),
                                   ],
                                   onChanged: (value) {
@@ -189,18 +201,70 @@ class _ConfigViewState extends State<ConfigView> {
                                   ),
                                 ),
                               ),
-                              Text(confidence.toStringAsFixed(2))
+                              SizedBox(
+                                width: 30,
+                                child: Text(
+                                  confidence.toStringAsFixed(2),
+                                  textAlign: TextAlign.end,
+                                )
+                              )
                             ],
                           ),
                         ],
                       ),
-                      if(action!="delete") Column(
+                      if(action=="draw") Column(
                         mainAxisSize: .min,
                         crossAxisAlignment: .start,
                         spacing: 10,
                         children: [
                           Text(
-                            "targetDir".tr,
+                            "thickness".tr,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          SliderTheme(
+                            data: SliderThemeData(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              overlayColor: Colors.transparent,
+                            ), 
+                            child: Row(
+                              spacing: 20,
+                              children: [
+                                Expanded(
+                                  child: Slider(
+                                    value: thickness.toDouble(), 
+                                    min: 1,
+                                    max: 30,
+                                    divisions: 29,
+                                    onChanged: (val){
+                                      setState(() {
+                                        thickness = val.toInt();
+                                      });
+                                    }
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                  child: Text(
+                                    thickness.toString(),
+                                    textAlign: TextAlign.end,
+                                  )
+                                )
+                              ],
+                            )
+                          ),
+                        ],
+                      ),
+                      if(action!="delete" && action!=null) Column(
+                        mainAxisSize: .min,
+                        crossAxisAlignment: .start,
+                        spacing: 10,
+                        children: [
+                          Text(
+                            outputLabel(),
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
