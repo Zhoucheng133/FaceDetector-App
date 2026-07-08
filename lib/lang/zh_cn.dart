@@ -25,4 +25,8 @@ const Map<String, String> zhCN={
   "deleteFiles": "删除文件",
   "copy": "复制",
   "move": "移动",
+  "output": "输出到...",
+  "thickness": "边框粗细",
+  "preview": "预览",
+  "config": "配置"
 };

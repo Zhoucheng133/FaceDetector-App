@@ -76,8 +76,20 @@ class _ConfigViewState extends State<ConfigView> {
       child: Padding(
         padding: const EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 15),
         child: Column(
+          crossAxisAlignment: .start,
           spacing: 10,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              child: Text(
+                "config".tr,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+            ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(

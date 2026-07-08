@@ -17,7 +17,8 @@ class ProcessArg{
   ImageAction action;
   String path;
   double confidence;
-  ProcessArg(this.imageType, this.action, this.confidence, this.path);
+  int tickness;
+  ProcessArg(this.imageType, this.action, this.confidence, this.path, this.tickness);
 }
 
 class Middleware extends GetxController {
