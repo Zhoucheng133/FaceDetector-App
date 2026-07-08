@@ -146,8 +146,16 @@ class _ProcessViewState extends State<ProcessView> {
           mainAxisSize: .min,
           spacing: 5,
           children: [
-            Icon(Icons.face_rounded),
-            Text(controller.faces[index].toString()),
+            Icon(
+              Icons.face_rounded,
+              color: controller.faces[index]>0 ? Theme.of(context).colorScheme.primary : Colors.grey,
+            ),
+            Text(
+              controller.faces[index].toString(),
+              style: TextStyle(
+                color: controller.faces[index]>0 ? Theme.of(context).colorScheme.primary : Colors.grey,
+              ),
+            ),
           ],
         );
       }else{
@@ -159,8 +167,16 @@ class _ProcessViewState extends State<ProcessView> {
           mainAxisSize: .min,
           spacing: 5,
           children: [
-            Icon(Icons.face_rounded),
-            Text(controller.faces[index].toString()),
+            Icon(
+              Icons.face_rounded,
+              color: controller.faces[index]>0 ? Theme.of(context).colorScheme.primary : Colors.grey,
+            ),
+            Text(
+              controller.faces[index].toString(),
+              style: TextStyle(
+                color: controller.faces[index]>0 ? Theme.of(context).colorScheme.primary : Colors.grey,
+              ),
+            ),
           ],
         );
       }else{
