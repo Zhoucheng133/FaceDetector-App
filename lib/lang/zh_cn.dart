@@ -34,5 +34,7 @@ const Map<String, String> zhCN={
   "paste": "粘贴",
   "selectAll": "全选",
   "window": "窗口",
-  "about": "关于"
+  "about": "关于",
+  "license": "许可证",
+  "projectURL": "项目地址"
 };

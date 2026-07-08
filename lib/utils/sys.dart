@@ -1,9 +1,10 @@
 import 'dart:io';
 
+import 'package:face_detector_app/utils/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget systemMenu(){
+Widget systemMenu(BuildContext context){
   return Platform.isMacOS ? PlatformMenuBar(
   menus: [
     PlatformMenu(
@@ -13,9 +14,7 @@ Widget systemMenu(){
           members: [
             PlatformMenuItem(
               label: "${'about'.tr} FaceDetector",
-              onSelected: (){
-                // 显示关于
-              }
+              onSelected: ()=>showAbout(context)
             )
           ]
         ),

@@ -96,7 +96,7 @@ class _MainWindowState extends State<MainWindow> with WindowListener {
             },
           ),
         ),
-        systemMenu(), 
+        systemMenu(context), 
       ],
     );
   }
