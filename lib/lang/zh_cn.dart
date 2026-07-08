@@ -28,5 +28,6 @@ const Map<String, String> zhCN={
   "output": "输出到...",
   "thickness": "边框粗细",
   "preview": "预览",
-  "config": "配置"
+  "config": "配置",
+  "backHome": "回到主页"
 };

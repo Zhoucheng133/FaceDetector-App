@@ -205,8 +205,8 @@ class _ProcessViewState extends State<ProcessView> {
                               mainAxisSize: .min,
                               spacing: 5,
                               children: [
-                                Icon(Icons.close_rounded),
-                                Text("cancel".tr),
+                                Icon(Icons.home_rounded),
+                                Text("backHome".tr),
                               ],
                             )
                           ),
