@@ -1,6 +1,8 @@
 import 'package:face_detector_app/getx/controller.dart';
 import 'package:face_detector_app/getx/middleware.dart';
+import 'package:face_detector_app/lang/en_us.dart';
 import 'package:face_detector_app/lang/zh_cn.dart';
+import 'package:face_detector_app/lang/zh_tw.dart';
 import 'package:face_detector_app/main_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -40,9 +42,9 @@ class MainApp extends StatefulWidget {
 class MainTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-    // 'en_US': enUS,
+    'en_US': enUS,
     'zh_CN': zhCN,
-    // 'zh_TW': zhTW,
+    'zh_TW': zhTW,
   };
 }
 
