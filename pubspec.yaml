@@ -1,7 +1,7 @@
 name: face_detector_app
 description: "FaceDetector App"
 publish_to: 'none'
-version: 0.1.0
+version: 0.2.0
 
 environment:
   sdk: ^3.11.4
@@ -40,7 +40,7 @@ msix_config:
   display_name: FaceDetector
   publisher_display_name: ZhouCheng
   identity_name: ZhouCheng.FaceDetector
-  msix_version: 0.1.0.0
+  msix_version: 0.2.0.0
   logo_path: assets/icon.png
   trim_logo: false
   capabilities: internetClient
