@@ -37,5 +37,6 @@ const Map<String, String> zhTW = {
   "about": "關於",
   "license": "授權條款",
   "projectURL": "專案網址",
-  "language": "語言"
+  "language": "語言",
+  "detection": "检测",
 };

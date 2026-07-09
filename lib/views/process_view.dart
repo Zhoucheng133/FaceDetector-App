@@ -191,17 +191,35 @@ class _ProcessViewState extends State<ProcessView> {
       padding: const EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 15),
       child: Material(
         child: Column(
+          crossAxisAlignment: .start,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              child: Text(
+                "detection".tr,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18
+                ),
+              ),
+            ),
             Expanded(
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: controller.files.length,
-                  itemBuilder: (BuildContext context, int index)=>Obx(
-                    () => ListTile(
-                      title: Text(p.basename(controller.files[index])),
-                      trailing: trailingBuilder(context, index)
-                    ),
-                  )
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).brightness==Brightness.light? Colors.white : Colors.grey[900],
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                child: Obx(
+                  () => ListView.builder(
+                    itemCount: controller.files.length,
+                    itemBuilder: (BuildContext context, int index)=>Obx(
+                      () => ListTile(
+                        title: Text(p.basename(controller.files[index])),
+                        trailing: trailingBuilder(context, index)
+                      ),
+                    )
+                  ),
                 ),
               )
             ),

@@ -37,5 +37,6 @@ const Map<String, String> enUS = {
   "about": "About",
   "license": "License",
   "projectURL": "Project URL",
-  "language": "Language"
+  "language": "Language",
+  "detection": "Detection",
 };

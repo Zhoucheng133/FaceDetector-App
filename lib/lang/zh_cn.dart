@@ -37,5 +37,6 @@ const Map<String, String> zhCN={
   "about": "关于",
   "license": "许可证",
   "projectURL": "项目地址",
-  "language": "语言"
+  "language": "语言",
+  "detection": "检测",
 };
