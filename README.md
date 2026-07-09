@@ -8,6 +8,10 @@ Also available in English. Click [HERE](/documents/en.md) to view the English ve
 
 ![License](https://img.shields.io/badge/License-MIT-dark_green)
 
+<a href="https://apps.microsoft.com/detail/9pmcvnr610td?referrer=appbadge&mode=direct">
+	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
+</a>
+
 这是一个人脸检测的工具，支持
 - 复制/移动/删除 人像照片/非人像照片 到某个目录
 - 框选照片中的人像

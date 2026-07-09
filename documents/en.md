@@ -8,6 +8,10 @@
 
 ![License](https://img.shields.io/badge/License-MIT-dark_green)
 
+<a href="https://apps.microsoft.com/detail/9pmcvnr610td?referrer=appbadge&mode=direct">
+	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
+</a>
+
 A face detection and organization tool that supports:
 - Copying, moving, or deleting portrait and non-portrait photos to a designated directory.
 - Drawing bounding boxes around detected faces in photos.
