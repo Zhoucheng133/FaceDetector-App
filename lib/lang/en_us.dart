@@ -39,4 +39,6 @@ const Map<String, String> enUS = {
   "projectURL": "Project URL",
   "language": "Language",
   "detection": "Detection",
+  "initModel": "Initializing Model",
+  "initModelTip": "This won't take long",
 };

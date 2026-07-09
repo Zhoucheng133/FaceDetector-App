@@ -121,7 +121,7 @@ class _ProcessViewState extends State<ProcessView> {
   }
 
   Future<void> process(BuildContext context) async {
-    await detector.run(()=>onProcessDone(context));
+    await detector.run(()=>onProcessDone(context), context);
   }
 
   @override

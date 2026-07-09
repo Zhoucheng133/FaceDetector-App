@@ -38,5 +38,7 @@ const Map<String, String> zhTW = {
   "license": "授權條款",
   "projectURL": "專案網址",
   "language": "語言",
-  "detection": "检测",
+  "detection": "偵測",
+  "initModel": "初始化模型",
+  "initModelTip": "這不需要很長時間",
 };

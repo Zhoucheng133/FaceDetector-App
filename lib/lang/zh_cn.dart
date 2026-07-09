@@ -39,4 +39,6 @@ const Map<String, String> zhCN={
   "projectURL": "项目地址",
   "language": "语言",
   "detection": "检测",
+  "initModel": "初始化模型",
+  "initModelTip": "这不需要很长时间",
 };

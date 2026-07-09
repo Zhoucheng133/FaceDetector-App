@@ -5,6 +5,29 @@ import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+Route showFixedDialog(BuildContext context, String title, String content) {
+  return DialogRoute(
+    context: context, 
+    barrierDismissible: false, 
+    builder: (context)=>AlertDialog(
+      title: Text(title),
+      content: Row(
+        crossAxisAlignment: .center,
+        mainAxisSize: .min,
+        spacing: 10,
+        children: [
+          Text(content),
+          SizedBox(
+            height: 20,
+            width: 20,
+            child: const CircularProgressIndicator(strokeWidth: 2)
+          )
+        ],
+      ),
+    )
+  );
+}
+
 Future<void> showOkDialog(BuildContext context, String title, String content, {String okText="ok"}) async {
   await showDialog(
     context: context, 
