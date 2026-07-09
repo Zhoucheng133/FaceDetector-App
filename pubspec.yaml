@@ -43,7 +43,7 @@ msix_config:
   msix_version: 0.1.0.0
   logo_path: assets/icon.png
   trim_logo: false
-  capabilities: internetClient, internetClientServer
+  capabilities: internetClient
   languages: zh-cn, zh-tw, en-us
   publisher: 
   store: true
