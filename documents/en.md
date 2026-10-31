@@ -1,6 +1,6 @@
 # FaceDetector
 
-中文版请点击 [这里](../README.md) 查看。
+Chinese version is available. Click [HERE](../README.md) to view the Chinese version of the README.
 
 ## Introduction
 
@@ -12,14 +12,27 @@
 	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
 </a>
 
-A face detection and organization tool that supports:
-- Copying, moving, or deleting portrait and non-portrait photos to a designated directory.
-- Drawing bounding boxes around detected faces in photos.
-- Adjusting the confidence threshold (detection strictness).
+This is a face detection tool that supports:
+- Copying/moving/deleting portrait photos/non-portrait photos to a certain directory
+- Drawing bounding boxes around faces in photos
+- Adjusting the confidence threshold (detection strictness)
 
-The core module is developed in Python and available [HERE](https://github.com/Zhoucheng133/Face-Detector).
+The core module is developed in Python [HERE](https://github.com/Zhoucheng133/Face-Detector)
 
 ## Screenshots
 
 <img src="../screenshots/en/1.png" width="400px">
 <img src="../screenshots/en/2.png" width="400px">
+
+## Build on Your Device
+
+- Go to [Google AI Edge](https://developers.google.com/edge/mediapipe/solutions/vision/face_detector#models) to download the model. The Release version uses `BlazeFace (full-range)`
+- Go to the [core component repository](https://github.com/Zhoucheng133/Face-Detector) to build the binary. See its README for details. Move the built `detector.exe` (Windows) or `detector` (macOS) to the `windows` and `macos` folders of this project
+- Build the app with Flutter. Make sure the Flutter version is not lower than `3.41.6`
+	```bash
+	# Windows
+	flutter build windows
+
+	# macOS
+	flutter build macos
+	```
